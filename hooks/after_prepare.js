@@ -8,7 +8,12 @@ function androidXUpgrade (ctx) {
     const enableJetifier = "android.enableJetifier=true";
     const gradlePropertiesPath = "./platforms/android/gradle.properties";
 
-    let gradleProperties = fs.readFileSync(gradlePropertiesPath, "utf8");
+    let gradleProperties;
+    try {
+        gradleProperties = fs.readFileSync(gradlePropertiesPath, "utf8");
+    } catch (e) {
+        gradleProperties = null;
+    }
 
     if (gradleProperties)
     {
